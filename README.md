@@ -1,0 +1,17 @@
+1. - membuat direktori baru dengan nama "football-store", lalu mengaktifkan virtual environment di terminal
+   - membuat file baru bernama "requirements.txt" yang diisi dengan dependencies, lalu menginstallnya
+   - membuat proyek django bernama "football_store" dengan perintah "django-admin startproject football_store"
+   - membuat file .env dan .envprod dan melakukan beberapa modifikasi pada settings.py
+   - membuat repositori github baru, lalu mengunggah proyek ke dalamnya
+   - deploy proyek ke pws
+   - menjalankan perintah "python manage.py startapp main" pada direktori football-store
+   - membuka settings.py lalu menambahkan main pada variable INSTALLED_APPS
+   - membuat direktori baru di dalam main, lalu membuat main.html
+   - membuat class Store dan menambahkan atribut name, price, description, thumbnail, category dan is_featured pada models.py
+   - membuat fungsi show_main di views.py untuk menampilkan teks dari template html
+   - memodifikasi main.html agar bisa menampilkan nama aplikasi, nama dan kelas
+   - membuat file urls.py pada direktori main, mengimpor fungsi path dari django.urls, dan fungsi show_main yang sudah dibuat tadi
+   - membuat variable app_name dan urlpatterns
+   - mengimpor fungsi path dan include dari django.urls di urls.py pada direktori football_store
+   - membuat list urlpatterns dan menambahkan main.urls
+   - melakukan push ke pws
