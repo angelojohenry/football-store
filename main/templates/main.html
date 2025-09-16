@@ -1,8 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
 <h1>Football Store</h1>
 
-<h4>Nama Aplikasi: </h4>
-<p>{{ appname }}</p> <!-- Ubah sesuai dengan npm kamu -->
-<h4>Name: </h4>
-<p>{{ name }}</p> <!-- Ubah sesuai dengan nama kamu -->
-<h4>Class: </h4>
-<p>{{ class }}</p> <!-- Ubah sesuai dengan kelas kamu -->
+<h5>App Name: </h5>
+<p>{{ appname }}<p>
+
+<h5>Name:</h5>
+<p>{{ name }}</p>
+
+<h5>Class:</h5>
+<p>{{ class }}</p>
+
+<a href="{% url 'main:add_object' %}">
+    <button>+ Add</button>
+</a>
+
+<hr>
+
+{% if not store_list %}
+<p>Belum ada item pada football store.</p>
+{% else %}
+
+{% for store in store_list %}
+<div>
+<h2><a href="{% url 'main:show_object' store.id %}">{{ store.name }}</a></h2>
+
+<p><b>{{ store.get_category_display }}</b>{% if store.is_featured %} | 
+    <b>Featured</b>{% endif %}</p>
+
+{% if store.thumbnail %}
+<img src="{{ store.thumbnail }}" alt="thumbnail" width="150" height="100">
+<br />
+{% endif %}
+<p><b>Rp. {{ store.price }}</b></p>
+
+<p>{{ store.description|truncatewords:25 }}...</p>
+
+<p><a href="{% url 'main:show_object' store.id %}"><button>Detail</button></a></p>
+</div>
+
+<hr>
+{% endfor %}
+
+{% endif %}
+{% endblock content %}
