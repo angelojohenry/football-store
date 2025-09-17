@@ -59,4 +59,8 @@ Penyerang dapat memanfaatkan hal tersebut dengan cara:
 - menambahkan path url ke dalam urlpatterns
 <img width="1074" height="770" alt="image" src="https://github.com/user-attachments/assets/cc33411e-c334-4a38-a739-2824c1600ff7" />
 <img width="1087" height="728" alt="image" src="https://github.com/user-attachments/assets/8110caf5-aec3-4402-a57d-6706278f4023" />
+<img width="1067" height="706" alt="image" src="https://github.com/user-attachments/assets/e889de9c-2fba-4bd2-bb95-fb9fb40c3b87" />
+<img width="1122" height="919" alt="image" src="https://github.com/user-attachments/assets/4e085869-3f89-48b6-b2da-ad12a4769ef3" />
+
+
 
