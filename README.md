@@ -62,5 +62,13 @@ Penyerang dapat memanfaatkan hal tersebut dengan cara:
 <img width="1067" height="706" alt="image" src="https://github.com/user-attachments/assets/e889de9c-2fba-4bd2-bb95-fb9fb40c3b87" />
 <img width="1122" height="919" alt="image" src="https://github.com/user-attachments/assets/4e085869-3f89-48b6-b2da-ad12a4769ef3" />
 
-
+TUGAS 4
+1. Django AuthenticationForm adalah form bawaan dari modul django.contrib.auth.forms. Form ini sudah menyediakan field username dan password serta memvalidasi apakah kredensial yang dimasukkan sesuai dengan kredensial user di database
+Kelebihan:
+   - Tidak perlu membuat form dari nol
+   - Validasi otomatis
+   - Keamanan terjamin
+Kekurangan:
+   - username dan password terbatas
+   - kurang fleksibel
 
