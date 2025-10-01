@@ -148,7 +148,7 @@ Implementasinya yaitu:
   - Digunakan untuk mengatur layout 1 dimensi (horizontal dan vertikal)
   - Elemen fleksibel, mudah diatur align, justify dan order
   - Cocok untuk membuat navbar, daftar kartu, tombol sejajar.
-  Grid:
+Grid:
   - Digunakan untuk layout 2 dimensi (baris dan kolom)
   - Cocok untuk membuat tabel, dashboard, layout halaman penuh
   - Bisa mengatur area dengan presisi
