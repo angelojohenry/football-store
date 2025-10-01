@@ -62,5 +62,66 @@ Penyerang dapat memanfaatkan hal tersebut dengan cara:
 <img width="1067" height="706" alt="image" src="https://github.com/user-attachments/assets/e889de9c-2fba-4bd2-bb95-fb9fb40c3b87" />
 <img width="1122" height="919" alt="image" src="https://github.com/user-attachments/assets/4e085869-3f89-48b6-b2da-ad12a4769ef3" />
 
-
+TUGAS 4
+1. Django AuthenticationForm adalah form bawaan dari modul django.contrib.auth.forms. Form ini sudah menyediakan field username dan password serta memvalidasi apakah kredensial yang dimasukkan sesuai dengan kredensial user di database
+Kelebihan:
+   - Tidak perlu membuat form dari nol
+   - Validasi otomatis
+   - Keamanan terjamin
+Kekurangan:
+   - Username dan password terbatas
+   - Kurang fleksibel
+2. Autentikasi bertujuan untuk memverifikasi identitas pengguna sedangkan otorisasi bertujuan untuk menentukan hak akses pengguna terhadap resource
+Implementasi autentikasi pada Django:
+   - Django menyediakan model User dengan field seperti username dan password
+   - Login dan logout ditangani oleh django.contrib.auth.authenticate(), django.contrib.auth.login(), django.contrib.auth.logout()
+Implementasi otorisasi pada Django:
+   - Decorator @login_required yang membatasi akses hanya untuk user yang sudah login
+   - Cek apakah user login dengan user.is_authenticate 
+3.
+Session
+Kelebihan:
+   - Lebih aman karena data sensitif tidak disimpan di browser
+   - Lebih fleksibel karena dapat menyimpan object/data kompleks
+   - Ukuran lebih besar dan tidak terbatas seperti cookie
+   - Integrasi dengan autentikasi
+Kekurangan:
+   - Data session disimpan di memori, database, atau cache sehingga dapat membebani server jika user banyak
+   - Tidak persisten karena biasanya hilang setelah browser ditutup
+   - Bergantung pada cookie atau URL rewriting
+Cookies
+Kelebihan:
+   - Lebih persisten karena dapat bertahan walau browser ditutup
+   - Tidak perlu resource server
+   - Cocok untuk preferensi user
+Kekurangan:
+   - Rentan dimanipulasi
+   - Ukuran terbatas
+   - Bisa disalahgunakan lewat cookie theft
+4. Penggunaan cookies tidak sepenuhnya aman secara default dan ada beberapa risiko potensial yang harus diwaspadai seperti manipulasi data, cookie theft, session hijacking, dan CSRF
+Django menangani risiko-risiko tersebut dengan:
+   - CSRF protection dengan otomatis menambahkan CSRF token pada form POST
+   - Password hashing
+   - Tidak menyimpan data sensitif pada cookie, hanya session ID
+   - Cookie signing
+   - Secure flags
+5. Implementasi checklist:
+   - Mengimpor UserCreationForm, messages, authenticate, login, logout, AuthenticationForm pada views.py
+   - Membuat fungsi register, login_user, dan logout_user di views.py
+   - Membuat file register.html dan login.html pada main/templates
+   - Mengimpor fungsi register, login_user dan logout_user di urls.py lalu menambahkan path url ke urlpatterns
+   - Membuat tombol logout pada main.html
+   - Mengimpor decorator login_required di views.py dan menambahkannya pada fungsi show_main dan show_object
+   - Mengimpor datetime, HttpResponseRedirect dan reverse pada views.py
+   - Memodifikasi fungsi login_user agar dapat menyimpan cookie bernama last_login yang berisi timestamp terakhir user melakukan login, lalu menambahkannya ke dalam variable context pada fungsi show_main
+   - Memodifikasi fungsi logout_user agar dapat menghapus cookie last_login ketika user logout
+   - Menambahkan tampilan data waktu login terakhir user pada main.html
+   - Mengimpor model User dan menambahkan atribut user pada class Product
+   - Menjalankan perintah python manage.py makemigrations dan python manage.py migrate
+   - Memodifikasi fungsi add_object pada views.py agar setiap objek yang dibuat akan otomatis terhubung dengan pengguna yang membuatnya
+   - Memodifikasi fungsi show_main dengan menambahkan filter produk dengan 2 opsi yaitu "all" untuk menampilkan semua produk dan "my" untuk menampilkan produk yang dibuat oleh user
+   - Menambahkan tombol filter my dan all pada main.html
+   - Menambahkan tampilan nama author pada object_detail.html
+   - Membuat 2 akun, lalu menambahkan masing-masing 3 produk di lokal
+   - Add, commit, lalu push ke github dan pws
 
