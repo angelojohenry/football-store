@@ -125,3 +125,49 @@ Django menangani risiko-risiko tersebut dengan:
    - Membuat 2 akun, lalu menambahkan masing-masing 3 produk di lokal
    - Add, commit, lalu push ke github dan pws
 
+TUGAS 5
+1. Urutan prioritas pengambilan CSS selector yaitu:
+   Inline style > ID selector > Class/pseudo-class/attribute selector > Element/tag selector
+2. Responsive design menjadi konsep yang penting dalam pengembangan aplikasi web karena:
+   - Berbagai jenis perangkat yang digunakan oleh user seperti HP, laptop dan tablet
+   - Meningkatkan user experience
+   - Konsistensi tampilan di berbagai device
+Contoh aplikasi yang sudah responsive adalah Youtube, karena layout video menyesuaikan layar, dan    menunya berubah menjadi hamburger menu di mobile
+Contoh aplikasi yang belum responsive adalah website lama seperti forum-forum jadul, karena tampilan pecah di layar hp atau teks yang terlalu kecil
+3. Perbedaan dari margin, border dan padding:
+- Margin: ruang di luar elemen, memberi jarak antar elemen
+- Border: garis tepi yang membungkus elemen
+- Padding: ruang antara konten dan border
+Implementasinya yaitu:
+.box {
+  margin: 20px;
+  border: 2px solid black;
+  padding: 15px;
+} 
+4. Flexbox:
+  - Digunakan untuk mengatur layout 1 dimensi (horizontal dan vertikal)
+  - Elemen fleksibel, mudah diatur align, justify dan order
+  - Cocok untuk membuat navbar, daftar kartu, tombol sejajar.
+Grid:
+  - Digunakan untuk layout 2 dimensi (baris dan kolom)
+  - Cocok untuk membuat tabel, dashboard, layout halaman penuh
+  - Bisa mengatur area dengan presisi
+5.  Implementasi checklist:
+    - menambahkan script CDN dari Tailwind pada base.html di bagian head
+    - Membuat fungsi edit_product dan delete_product di views.py
+    - Membuat berkas edit_product.html pada main/templates
+    - Import fungsi edit_product dan delete_product di urls.py dan menambahkan path urlnya di urlpatterns
+    - Menambahkan tombol edit dan delete di main.html
+    - Membuat navbar.html di root directory
+    - include navbar.html pada main.html
+    - Menambahkan middleware WhiteNoise pada settings.py
+    - Mengkonfigurasi variabel STATIC_ROOT, STATICFILES_DIRS, dan STATIC_URL
+    - Membuat direktori baru bernama static dan membuat direktori bernama css di dalamnya
+    - Membuat file global.css pada static/css
+    - Menghubungkan global.css dengan base.html
+    - Menambahkan custom styling ke global.css
+    - Melakukan styling pada navbar.html, login.html, register.html
+    - Membuat file card_product.html pada main/templates
+    - Menggunakan card_product.html pada main.html
+    - Melakukan styling pada object_detail.html, add_object, dan edit_product
+    - add, commit, push ke git dan pws
