@@ -38,7 +38,7 @@
         </div>
       {% endif %}
 
-      <form method="POST" action="" class="space-y-6">
+      <form id="loginForm" class="space-y-6">
         {% csrf_token %}
         
         <div>
@@ -71,25 +71,7 @@
       </form>
 
       <!-- Messages Display -->
-      {% if messages %}
-        <div class="mt-6">
-          {% for message in messages %}
-            <div 
-              class="
-                px-4 py-3 rounded-md text-sm border
-                {% if message.tags == 'success' %}
-                  bg-green-50 border-green-200 text-green-700
-                {% elif message.tags == 'error' %}
-                  bg-red-50 border-red-200 text-red-700
-                {% else %}
-                  bg-gray-50 border-gray-200 text-gray-700
-                {% endif %}
-              ">
-              {{ message }}
-            </div>
-          {% endfor %}
-        </div>
-      {% endif %}
+      <div id="loginMessage" class="mt-4 text-center"></div>
 
       <div class="mt-6 text-center pt-6 border-t border-gray-200">
         <p class="text-gray-500 text-sm">
@@ -102,4 +84,52 @@
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("loginForm");
+  const messageBox = document.getElementById("loginMessage");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // mencegah reload halaman
+
+    // Ambil data form
+    const formData = new FormData(form);
+
+    // Ambil CSRF token (karena Django wajib)
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    try {
+      const response = await fetch("{% url 'main:login_ajax' %}", {
+        method: "POST",
+        headers: { "X-CSRFToken": csrfToken },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        showToast('Login successful!', 'Welcomme back, ' + data.username, 'success');
+
+        setTimeout(() => {
+          window.location.href = data.redirect_url;
+        }, 1000);
+      } else {
+        showToast('Login failed', 'Please try again', 'error');
+        messageBox.innerHTML = `
+          <div class="px-4 py-3 rounded-md text-sm border bg-red-50 border-red-200 text-red-700">
+            ${data.message}
+          </div>`;
+      }
+
+    } catch (err) {
+      console.error("Login error:", err);
+      messageBox.innerHTML = `
+        <div class="px-4 py-3 rounded-md text-sm border bg-red-50 border-red-200 text-red-700">
+          An error occurred. Please try again later.
+        </div>`;
+    }
+  });
+});
+</script>
 {% endblock content %}

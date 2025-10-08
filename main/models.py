@@ -6,7 +6,7 @@ class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     CATEGORY_CHOICES = [
         ('jersey', 'Jersey'),
-        ('t-shirt', 'T-shirt'),
+        ('tshirt', 'T-Shirt'),
         ('jacket', 'Jacket'),
         ('shoes', 'Shoes'),
         ('socks', 'Socks'),

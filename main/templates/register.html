@@ -39,7 +39,7 @@
         </div>
       {% endif %}
 
-      <form method="POST" action="" class="space-y-5">
+      <form id="registerForm" class="space-y-5">
         {% csrf_token %}
         
         <div>
@@ -83,25 +83,7 @@
       </form>
 
       <!-- Messages Display -->
-      {% if messages %}
-        <div class="mt-6">
-          {% for message in messages %}
-            <div 
-              class="
-                px-4 py-3 rounded text-sm border
-                {% if message.tags == 'success' %}
-                  bg-green-50 border-green-200 text-green-700
-                {% elif message.tags == 'error' %}
-                  bg-red-50 border-red-200 text-red-700
-                {% else %}
-                  bg-gray-50 border-gray-200 text-gray-700
-                {% endif %}
-              ">
-              {{ message }}
-            </div>
-          {% endfor %}
-        </div>
-      {% endif %}
+      <div id="registerMessage" class="mt-6 text-center"></div>
 
       <div class="mt-6 text-center">
         <p class="text-gray-500 text-sm">
@@ -115,4 +97,53 @@
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registerForm");
+  const messageBox = document.getElementById("registerMessage");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    try {
+      const response = await fetch("{% url 'main:register_ajax' %}", {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrfToken,
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // ✅ Tampilkan toast sukses
+        showToast('Registration successful!', '', 'success');
+        messageBox.innerHTML = `
+          <div class="px-4 py-3 rounded-md text-sm border bg-green-50 border-green-200 text-green-700 mt-3">
+            ${data.message || "Registration successful! Redirecting to login..."}
+          </div>`;
+        setTimeout(() => {
+          window.location.href = data.redirect_url;
+        }, 1500);
+      } else {
+        // ❌ Tampilkan error
+        showToast('Registration failed', '', 'error');
+        messageBox.innerHTML = `
+          <div class="px-4 py-3 rounded-md text-sm border bg-red-50 border-red-200 text-red-700 mt-3">
+            ${data.message}
+          </div>`;
+      }
+
+    } catch (err) {
+      console.error("Register error:", err);
+      showToast('Register error', 'Try again later', 'error');
+    }
+  });
+});
+</script>
 {% endblock content %}
