@@ -171,3 +171,24 @@ Grid:
     - Menggunakan card_product.html pada main.html
     - Melakukan styling pada object_detail.html, add_object, dan edit_product
     - add, commit, push ke git dan pws
+
+TUGAS 6
+1. Synchronous: Browser mengirim request dan menunggu server selesai merespons sebelum bisa melakukan hal lain
+Asynchronous: Browser mengirim request ke server tanpa menghentikan aktivitas halaman (non-blocking)
+2. - Frontend (JavaScript) mengirim request ke URL Django (biasanya @csrf_exempt atau view yang menerima request.is_ajax())
+   - Django View menerima request dan tidak mengembalikan HTML, tetapi JSON response
+   - JavaScript membaca JSON tersebut dan mengupdate tampilan halaman tanpa reload
+   - Hasilnya, halaman tetap di tempat — hanya sebagian elemen DOM yang berubah
+3. - Lebih cepat & efisien
+   - Responsif & interaktif
+   - Mengurangi beban server
+   - UX lebih baik
+4. - Menggunakan csrf token
+   - validasi input di server
+   - gunakan https
+   - batasi data di json
+   - menggunakan django authentication API
+5. - Halaman tidak reload
+   - waktu response singkat
+   - navigasi lebih mulus
+   - lebih interaktif
